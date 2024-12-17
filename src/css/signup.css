@@ -1,0 +1,88 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+}
+
+div {
+  background-color: white;
+  width: 100%;
+  max-width: 400px;
+  height: 100vh;
+  padding: 2.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div form {
+  display: flex;
+  flex-direction: column;
+}
+
+div form h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+div form input {
+  width: 100%;
+  padding: 0.6rem;
+  margin-bottom: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+div form input[type='submit'] {
+  background-color: #4ce680;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+div form input[type='submit']:hover {
+  background-color: #49d678;
+}
+
+div form input[type='file'] {
+  padding: 0.5rem;
+}
+
+a {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  text-decoration: none;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+a:hover {
+  color: #49d678;
+  text-decoration: underline;
+}
+
+label {
+  font-size: 16px;
+  margin-left: 2px;
+}
+
+@media screen and (max-width: 768px) {
+  div {
+    width: 300px;
+  }
+}
