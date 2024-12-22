@@ -94,6 +94,7 @@ nav li:first-child {
   height: 350px;
   padding: 1rem;
   transition: transform 0.2s ease;
+  margin-bottom: 1.5rem;
 }
 
 .item-card:hover {
@@ -372,4 +373,39 @@ section {
 
 #update input {
   padding: 0.4rem;
+}
+
+@media (max-width: 1050px) {
+  section {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 860px) {
+  section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  nav ul li {
+    display: none;
+  }
+  nav ul li:nth-child(-n + 2) {
+    display: block;
+  }
+}
+
+@media (max-width: 700px) {
+  section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  section {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    place-items: center;
+  }
 }
