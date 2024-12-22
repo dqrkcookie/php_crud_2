@@ -11,8 +11,6 @@ if(isset($_POST['add'])){
     
     $newFileName = '';
 
-    $newFileName = '';
-
     $file = $_FILES["picture"];
     $fileName = $file["name"];
     $fileTmpName = $file["tmp_name"];
@@ -25,7 +23,7 @@ if(isset($_POST['add'])){
         $extension = strtolower(end($getExtension));
 
         if (in_array($extension, $accepted_type)) {
-            if ($fileSize < 1000000) {
+            if ($fileSize < 5000000) {
                 $newFileName = uniqid('img_', true) . "." . $extension;
                 $fileDestination = '../src/images/' . $newFileName;
                 move_uploaded_file($fileTmpName, $fileDestination);
@@ -39,9 +37,9 @@ if(isset($_POST['add'])){
     $parameters = [$name, $price, $details, $newFileName, $stock];
 
     if(!$stmt->execute($parameters)){
-      header("Location: ../src/pages/home.php?adding=failed");
+      header("Location: ../src/pages/add.php");
     } else {
-      header("Location: ../src/pages/home.php?adding=success");
+      header("Location: ../src/pages/add.php");
     }
   }catch(PDOException $e){
     error_log("Failed to add Item: " . $e->getMessage());

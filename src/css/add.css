@@ -1,0 +1,165 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Times New Roman';
+}
+
+h1 {
+  text-align: center;
+  margin: 2rem;
+  display: inline;
+  font-size: 2rem;
+  color: #333;
+}
+
+table {
+  width: 70%;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin: auto;
+}
+
+thead {
+  background-color: #f8f9fa;
+}
+
+th {
+  text-align: left;
+  padding: 1rem;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #495057;
+  border-bottom: 2px solid #dee2e6;
+}
+
+td {
+  padding: 1rem;
+  font-size: 1.1rem;
+  border-bottom: 1px solid #dee2e6;
+  color: #6c757d;
+}
+
+img {
+  text-align: center;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 15%;
+}
+
+#img-td {
+  text-align: center;
+}
+
+.action-buttons button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.action-buttons {
+  text-align: center;
+}
+
+#addItem,
+.editItem {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: max-content;
+  padding: 2rem;
+  border: 1px solid;
+}
+
+#addItem label,
+.editItem label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+#addItem input[type='text'],
+#addItem input[type='number'],
+#addItem input[type='file'],
+#addItem select,
+.editItem input[type='text'],
+.editItem input[type='number'],
+.editItem input[type='file'],
+.editItem select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  border: 1px solid;
+}
+
+#addItem button,
+.editItem button,
+.button button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+
+#addItem button:hover,
+.editItem button:hover,
+.button button:hover,
+.action-buttons button:hover {
+  background-color: #45a049;
+}
+
+#addItem h2,
+.editItem h2 {
+  margin: 1rem auto;
+}
+
+.item-container {
+  background-color: white;
+  border: 2px solid gray;
+  padding: 20px;
+  width: 400px;
+  margin: auto;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.item-container img {
+  margin-bottom: 15px;
+  margin-top: 10px;
+  width: 170px !important;
+  height: 170px;
+}
+
+.item-container strong {
+  font-size: 1.5em;
+  color: #333;
+}
+
+.item-container h1 {
+  font-size: 1em;
+  color: #555;
+  margin: 10px 0;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 4rem;
+}

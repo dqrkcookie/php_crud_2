@@ -5,7 +5,7 @@
 }
 
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Time New Roman';
   background-color: #f4f4f4;
   display: flex;
   min-height: 100vh;
@@ -46,7 +46,7 @@ div form input {
 }
 
 div form input[type='submit'] {
-  background-color: #4ce680;
+  background-color: #4caf50;
   color: white;
   border: none;
   cursor: pointer;
@@ -54,13 +54,14 @@ div form input[type='submit'] {
 }
 
 div form input[type='submit']:hover {
-  background-color: #49d678;
+  background-color: #45a049;
 }
 
 div form a {
   text-align: left;
   margin-top: 1rem;
   text-decoration: none;
+  color: #333;
 }
 
 div form a:hover {

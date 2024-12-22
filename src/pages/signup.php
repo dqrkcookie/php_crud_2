@@ -10,7 +10,7 @@ require_once("../../config/conn.php");
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ipsum</title>
+    <title>Rakk</title>
     <link rel="stylesheet" href="../css/signup.css">
 </head>
 
@@ -28,7 +28,7 @@ require_once("../../config/conn.php");
             <label for="birthday">Birthday:</label>
             <input id="birthday" type="date" placeholder="Birthday.." name="birthday" required/>
             <label for="birthday">Picture:</label>
-            <input id="profile" type="file" placeholder="Profile Picture.." name="profile" required/>
+            <input id="profile" type="file" placeholder="Profile Picture.." name="profile" accept="image/*" required/>
             <input id="submit" type="submit" value="Submit" name="submit" />
         </form>
     </div>

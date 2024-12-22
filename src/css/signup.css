@@ -5,7 +5,7 @@
 }
 
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Times New Roman';
   background-color: #f4f4f4;
   display: flex;
   min-height: 100vh;
@@ -46,7 +46,7 @@ div form input {
 }
 
 div form input[type='submit'] {
-  background-color: #4ce680;
+  background-color: #4caf50;
   color: white;
   border: none;
   cursor: pointer;
@@ -54,7 +54,7 @@ div form input[type='submit'] {
 }
 
 div form input[type='submit']:hover {
-  background-color: #49d678;
+  background-color: #45a049;
 }
 
 div form input[type='file'] {
@@ -69,6 +69,7 @@ a {
   padding: 0.5rem;
   border-radius: 4px;
   transition: background-color 0.3s ease;
+  color: #333;
 }
 
 a:hover {

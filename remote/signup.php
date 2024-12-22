@@ -27,7 +27,7 @@ if(isset($_POST['submit'])){
         $extension = strtolower(end($getExtension));
 
         if (in_array($extension, $accepted_type)) {
-            if ($fileSize < 1000000) {
+            if ($fileSize < 10000000) {
                 $newFileName = uniqid('img_', true) . "." . $extension;
                 $fileDestination = '../src/images/profile_picture/' . $newFileName;
                 move_uploaded_file($fileTmpName, $fileDestination);
@@ -42,7 +42,7 @@ if(isset($_POST['submit'])){
     if(!$stmt->execute($params)){ 
       die('Unable to create an account');
     } else {
-      header("Location: ../index.php?signup=success");
+      header("Location: ../index.php");
       die();
     }
   }catch(PDOException $e){
