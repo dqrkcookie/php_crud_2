@@ -22,11 +22,13 @@ if(isset($_POST['submit'])){
 
     $data = $stmt->fetch();
 
-    if($data && password_verify($password, $data->password)){
+    if($data && password_verify($password, $data->password) && $data->status == 'Active'){
         $_SESSION['username'] = $username;
         echo "<script> window.location.href = '../src/pages/main.php'; </script>";
+    } else if($data && password_verify($password,                   $data->password) && $data->status == 'Blocked') {
+      echo "<script> window.location.href = '../src/pages/blockuser.php'; </script>";
     } else {
-        header("Location: ../index.php");
+      header("Location: ../index.php?credentials=invalid");
     }
   }catch(PDOException $e){
     die("Login error: " . $e->getMessage());

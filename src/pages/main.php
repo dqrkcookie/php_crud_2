@@ -145,7 +145,7 @@ $id = uniqid();
         </tr>
       <?php } else if(!empty($pendingOrders) && empty($notification)){ ?>
         <tr>
-          <td><span class="msg">Wait for Rakk's confirmation</span></td>
+          <td><span class="msg">Pending...</span></td>
         </tr>
       <?php } ?>
       <?php $orderIds = [] ?>
@@ -267,29 +267,97 @@ $id = uniqid();
         </table>
       </div>
     </form>
+
+    <div id="welcome">
+      <h1>Welcome to Rakk!</h1>
+    </div>
    
+    <div class="sort-group">
+      <form action="./main.php" method="GET">
+          <label for="sort">Sort by:</label>
+          <select id="sort" name="sort">
+              <option value="a-z">Name: A-Z</option>
+              <option value="z-a">Name: Z-A</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+          </select>
+          <input type="submit" value="✔" name="submit-sort">
+      </form>
+  </div>
 
 <section>
   <?php foreach($items as $item) { ?>
-  <div class="item-card">
-    <img src="../images/<?php echo $item->productPicture ?>" alt="Shop Item">
-    <div class="item-details">
-      <h3><?php echo $item->productName ?></h3>
-      <p class="description"><?php echo $item->productDetails ?>.</p>
-      <form action="../../remote/addtocart.php" method="GET">
-        <div class="price-qty">
-          <span class="price">₱<?php echo $item->productPrice ?></span>
-          <input type="number" value="1" min="1" name="qty">
+    <?php if(!isset($_GET['submit-sort'])) { ?>
+      <div class="item-card">
+        <img src="../images/<?php echo $item->productPicture ?>" alt="Shop Item">
+        <div class="item-details">
+          <h3><?php echo $item->productName ?></h3>
+          <p class="description"><?php echo $item->productDetails ?>.</p>
+          <form action="../../remote/addtocart.php" method="GET">
+            <div class="price-qty">
+              <span class="price">₱<?php echo $item->productPrice ?></span>
+              <input type="number" value="1" min="1" name="qty">
+            </div>
+            <input type="hidden" name="name" value="<?php echo $item->productName ?>">
+            <input type="hidden" name="price" value="<?php echo $item->productPrice ?>">
+            <input type="hidden" name="username" value="<?php echo 
+            $username ?>">
+            <button type="submit" class="add-to-cart">Add to Cart</button>
+          </form>
         </div>
-        <input type="hidden" name="name" value="<?php echo $item->productName ?>">
-        <input type="hidden" name="price" value="<?php echo $item->productPrice ?>">
-        <input type="hidden" name="username" value="<?php echo 
-        $username ?>">
-        <button type="submit" class="add-to-cart">Add to Cart</button>
-      </form>
-    </div>
-  </div>
+      </div>
+    <?php } ?>
   <?php } ?>
+
+  <?php 
+
+function displaySorted($products, $username) {
+  foreach ($products as $product) { ?>
+      <div class="item-card">
+        <img src="../images/<?php echo $product->productPicture ?>" alt="Shop Item">
+        <div class="item-details">
+          <h3><?php echo $product->productName ?></h3>
+          <p class="description"><?php echo $product->productDetails ?>.</p>
+          <form action="../../remote/addtocart.php" method="GET">
+            <div class="price-qty">
+              <span class="price">₱<?php echo $product->productPrice ?></span>
+              <input type="number" value="1" min="1" name="qty">
+            </div>
+            <input type="hidden" name="name" value="<?php echo $product->productName ?>">
+            <input type="hidden" name="price" value="<?php echo $product->productPrice ?>">
+            <input type="hidden" name="username" value="<?php echo 
+            $username ?>">
+            <button type="submit" class="add-to-cart">Add to Cart</button>
+          </form>
+        </div>
+      </div>
+  <?php }
+}
+
+if (isset($_GET['submit-sort'])) {
+  $sort_query = '';
+  switch ($_GET['sort']) {
+      case 'a-z':
+          $sort_query = "ORDER BY productName ASC";
+          break;
+      case 'z-a':
+          $sort_query = "ORDER BY productName DESC";
+          break;
+      case 'price-low':
+          $sort_query = "ORDER BY productPrice ASC";
+          break;
+      case 'price-high':
+          $sort_query = "ORDER BY productPrice DESC";
+          break;
+  }
+
+  if ($sort_query) {
+      $sorted_products = $pdo->query("SELECT * FROM product_tbl $sort_query")->fetchAll();
+      displaySorted($sorted_products, $username);
+  }
+}
+
+?>
 </section>
   
 </body>

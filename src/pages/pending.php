@@ -60,7 +60,7 @@ $pendings = $stmt->fetchAll();
                 <td><?php foreach($qty as $q){echo $q . '<br>';} ?></td>
                 <td><?php echo number_format($pending->amount, 2); ?></td>
                 <td><?php echo $pending->address; ?></td>
-                <td><a href="../../remote/accept.php?id=<?php echo $pending->orderId ?>&username=<?php echo $pending->username ?>&amount=<?php echo $pending->amount ?>&address=<?php echo $pending->address ?>&items=<?php echo $toUrl; ?>&accept=yes"><button>Accept Order</button></a></td>
+                <td><a href="../../remote/accept.php?id=<?php echo $pending->orderId ?>&username=<?php echo $pending->username ?>&amount=<?php echo $pending->amount ?>&address=<?php echo $pending->address ?>&items=<?php echo $toUrl; ?>&accept=accepted"><button>Accept Order</button></a></td>
               </tr>
             <?php
             }
