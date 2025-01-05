@@ -266,28 +266,32 @@ $id = uniqid();
         </table>
       </div>
     </form>
-   
 
 <section>
   <?php foreach($data as $item) { ?>
-  <div class="item-card">
-    <img src="../images/<?php echo $item->productPicture ?>" alt="Shop Item">
-    <div class="item-details">
-      <h3><?php echo $item->productName ?></h3>
-      <p class="description"><?php echo $item->productDetails ?>.</p>
-      <form action="../../remote/addtocart.php" method="GET">
-        <div class="price-qty">
-          <span class="price">₱<?php echo $item->productPrice ?></span>
-          <input type="number" value="1" min="1" name="qty">
+    <?php if($item->noOfStocks > 0) { ?>
+      <div class="item-card">
+        <img src="../images/<?php echo $item->productPicture ?>" alt="Shop Item">
+        <div class="item-details">
+          <h3><?php echo $item->productName ?></h3>
+          <p class="description"><?php echo $item->productDetails ?>.</p>
+          <form action="../../remote/addtocart.php" method="GET">
+            <div class="price-qty">
+              <span class="price">₱<?php echo $item->productPrice ?></span>
+              <input type="number" value="1" min="1" name="qty">
+            </div>
+            <input type="hidden" name="name" value="<?php echo $item->productName ?>">
+            <input type="hidden" name="price" value="<?php echo $item->productPrice ?>">
+            <input type="hidden" name="username" value="<?php echo 
+            $username ?>">
+            <button type="submit" class="add-to-cart">Add to Cart</button>
+          </form>
+          <?php if($item->noOfStocks < 25) {?>
+            <p><?php echo $item->noOfStocks . ' item(s) left' ?></p>
+          <?php } ?>
         </div>
-        <input type="hidden" name="name" value="<?php echo $item->productName ?>">
-        <input type="hidden" name="price" value="<?php echo $item->productPrice ?>">
-        <input type="hidden" name="username" value="<?php echo 
-        $username ?>">
-        <button type="submit" class="add-to-cart">Add to Cart</button>
-      </form>
-    </div>
-  </div>
+      </div>
+    <?php } ?>
   <?php } ?>
 </section>
   

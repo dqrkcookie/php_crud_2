@@ -271,8 +271,30 @@ $id = uniqid();
     <div id="welcome">
       <h1>Welcome to Rakk!</h1>
     </div>
+
+    <?php
+
+    $categories = [];
+    foreach($items as $d){
+      if(!in_array($d->category, $categories)){
+        array_push($categories, $d->category);
+      }
+    }
+
+    ?>
    
     <div class="sort-group">
+
+      <div class="dropdown">
+          <button class="dropdown-btn">Categories ▾</button>
+          <div class="dropdown-content">
+            <a href="./main.php">All</a>
+            <?php foreach($categories as $c) { ?>
+              <a href="./main.php?category=<?php echo $c ?>"><?php echo $c ?></a>
+              <?php } ?>
+          </div>
+      </div>
+        
       <form action="./main.php" method="GET">
           <label for="sort">Sort by:</label>
           <select id="sort" name="sort">
@@ -287,7 +309,7 @@ $id = uniqid();
 
 <section>
   <?php foreach($items as $item) { ?>
-    <?php if(!isset($_GET['submit-sort'])) { ?>
+    <?php if(!isset($_GET['submit-sort']) && $item->noOfStocks > 0 && !isset($_GET['category'])) { ?>
       <div class="item-card">
         <img src="../images/<?php echo $item->productPicture ?>" alt="Shop Item">
         <div class="item-details">
@@ -304,6 +326,9 @@ $id = uniqid();
             $username ?>">
             <button type="submit" class="add-to-cart">Add to Cart</button>
           </form>
+          <?php if($item->noOfStocks < 25) {?>
+            <p><?php echo $item->noOfStocks . ' item(s) left' ?></p>
+          <?php } ?>
         </div>
       </div>
     <?php } ?>
@@ -313,24 +338,29 @@ $id = uniqid();
 
 function displaySorted($products, $username) {
   foreach ($products as $product) { ?>
-      <div class="item-card">
-        <img src="../images/<?php echo $product->productPicture ?>" alt="Shop Item">
-        <div class="item-details">
-          <h3><?php echo $product->productName ?></h3>
-          <p class="description"><?php echo $product->productDetails ?>.</p>
-          <form action="../../remote/addtocart.php" method="GET">
-            <div class="price-qty">
-              <span class="price">₱<?php echo $product->productPrice ?></span>
-              <input type="number" value="1" min="1" name="qty">
-            </div>
-            <input type="hidden" name="name" value="<?php echo $product->productName ?>">
-            <input type="hidden" name="price" value="<?php echo $product->productPrice ?>">
-            <input type="hidden" name="username" value="<?php echo 
-            $username ?>">
-            <button type="submit" class="add-to-cart">Add to Cart</button>
-          </form>
+      <?php if($product->noOfStocks > 0) { ?>
+        <div class="item-card">
+          <img src="../images/<?php echo $product->productPicture ?>" alt="Shop Item">
+          <div class="item-details">
+            <h3><?php echo $product->productName ?></h3>
+            <p class="description"><?php echo $product->productDetails ?>.</p>
+            <form action="../../remote/addtocart.php" method="GET">
+              <div class="price-qty">
+                <span class="price">₱<?php echo $product->productPrice ?></span>
+                <input type="number" value="1" min="1" name="qty">
+              </div>
+              <input type="hidden" name="name" value="<?php echo $product->productName ?>">
+              <input type="hidden" name="price" value="<?php echo $product->productPrice ?>">
+              <input type="hidden" name="username" value="<?php echo 
+              $username ?>">
+              <button type="submit" class="add-to-cart">Add to Cart</button>
+            </form>
+            <?php if($product->noOfStocks < 25) {?>
+              <p><?php echo $product->noOfStocks . ' item(s) left' ?></p>
+            <?php } ?>
+          </div>
         </div>
-      </div>
+      <?php } ?>
   <?php }
 }
 
@@ -355,7 +385,15 @@ if (isset($_GET['submit-sort'])) {
       $sorted_products = $pdo->query("SELECT * FROM product_tbl $sort_query")->fetchAll();
       displaySorted($sorted_products, $username);
   }
+
 }
+
+if (isset($_GET['category'])) {
+  $category = $_GET['category'];
+
+  $filtered_products = $pdo->query("SELECT * FROM product_tbl WHERE category = '$category'")->fetchAll();
+    displaySorted($filtered_products, $username);
+  }
 
 ?>
 </section>

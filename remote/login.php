@@ -9,8 +9,7 @@ if(isset($_POST['submit'])){
     $password = isset($_POST['password']) ? $_POST['password'] : '';
 
     if($username == 'admin' && $password == 'admin'){
-      $_SESSION['admin'] = $username;
-      header("Location: ../src/pages/dashboard.php");
+      header("Location: ../src/pages/adminlogin.php");
       die();
     }
 

@@ -24,6 +24,7 @@ require_once('../../config/conn.php');
   <nav>
     <ul>
       <li><a href="./dashboard.php"><button>Home</button></a></li>
+      <li><a href="./admin.php"><button>Admins</button></a></li>
       <li><a href="./add.php"><button>Add Item</button></a></li>
       <li><a href="./pending.php"><button>Pending Orders <?php if(count($pending) > 0) { ?>
         <span id="pending"><?php echo count($pending) ?></span>

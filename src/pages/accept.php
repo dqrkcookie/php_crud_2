@@ -7,7 +7,7 @@ if(empty($_SESSION['admin'])){
   header("Location: ../../index.php");
 }
 
-$stmt = $pdo->query("SELECT * FROM accepted_orders");
+$stmt = $pdo->query("SELECT * FROM accepted_orders ORDER BY id");
 $stmt->execute();
 
 $accepted = $stmt->fetchAll();

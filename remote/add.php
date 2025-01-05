@@ -8,6 +8,8 @@ if(isset($_POST['add'])){
     $details = $_POST['details'] ?? '';
     $price = $_POST['price'] ?? '';
     $stock = $_POST['stock'] ?? '';
+    $noOfStocks = $_POST['noOfStocks'] ?? '';
+    $category = $_POST['category'] ?? '';
     
     $newFileName = '';
 
@@ -31,10 +33,10 @@ if(isset($_POST['add'])){
         } 
     }
 
-    $query = "INSERT INTO product_tbl(productName, productPrice, productDetails, productPicture, productStocks)VALUES(?, ?, ?, ?, ?)";
+    $query = "INSERT INTO product_tbl(productName, productPrice, productDetails, productPicture, productStocks, noOfStocks, category)VALUES(?, ?, ?, ?, ?, ?, ?)";
 
     $stmt = $pdo->prepare($query);
-    $parameters = [$name, $price, $details, $newFileName, $stock];
+    $parameters = [$name, $price, $details, $newFileName, $stock, $noOfStocks, $category];
 
     if(!$stmt->execute($parameters)){
       header("Location: ../src/pages/add.php");

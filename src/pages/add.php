@@ -7,6 +7,12 @@ if(empty($_SESSION['admin'])){
   header("Location: ../../index.php");
 }
 
+if($_SESSION['admin'] == 'customer support'){
+  echo "<script>alert('You dont have permission to access this page!');
+    window.location.href = './dashboard.php';
+  </script>";
+}
+
 $query = "SELECT * FROM product_tbl ORDER BY productID";
 
 $stmt = $pdo->prepare($query);
@@ -26,10 +32,12 @@ $stmt->execute();
       <thead>
           <tr>
               <th>Item Name</th>
+              <th>Category</th>
               <th>Picture</th>
               <th>Details</th>
               <th>Price</th>
               <th>Stock</th>
+              <th>No. of stocks</th>
               <th>Actions</th>
           </tr>
       </thead>
@@ -40,6 +48,9 @@ $stmt->execute();
             <label for="itemName">Item Name:</label>
             <input type="text" id="itemName" name="name" required>
 
+            <label for="category">Category:</label>
+            <input type="text" id="category" name="category" required>
+          
             <label for="itemPicture">Picture:</label>
             <input type="file" id="itemPicture" name="picture" accept="image/*" required>
 
@@ -55,6 +66,8 @@ $stmt->execute();
                 <option value="In Stock">In Stock</option>
                 <option value="Out of Stock">Out of Stock</option>
             </select>
+            <label for="noOfStocks">No. of Stocks:</label>
+            <input type="number" id="noOfStocks" name="noOfStocks" required>
 
             <button type="submit" name="add">Add now</button>
           </form>
@@ -62,6 +75,7 @@ $stmt->execute();
         <?php while($data = $stmt->fetch()) { ?>
           <div class="item-container" id="view<?php echo $data->productID ?>" popover>
               <strong><?php echo $data->productName ?></strong><br/>
+              <p><?php echo $data->category ?></strong><br/>
               <div>
                 <img src="../images/<?php echo $data->productPicture ?>" alt="Item picture">
               </div><br/>
@@ -75,6 +89,9 @@ $stmt->execute();
               <input type="hidden" name="productID" value="<?php echo $data->productID ?>">
               <label for="itemName">Item Name:</label>
               <input type="text" id="itemName" name="name" value="<?php echo $data->productName ?>">
+
+              <label for="category">Category:</label>
+            <input type="text" id="category" name="category" value="<?php echo $data->category ?>"required>
 
               <label for="itemPicture">Picture:</label>
               <input type="file" id="itemPicture" name="picture" accept="image/*">
@@ -92,15 +109,25 @@ $stmt->execute();
                   <option value="Out of Stock">Out of Stock</option>
               </select>
 
+              <label for="noOfStocks">No. of Stocks:</label>
+              <input type="number" id="noOfStocks" name="noOfStocks" required>
+
               <button type="submit" name="update">Update now</button>
             </form>
           </div>
           <tr>
               <td><?php echo $data->productName; ?></td>
+              <td><?php echo $data->category; ?></td>
               <td id="img-td"><img src="../images/<?php echo $data->productPicture; ?>" alt="Item 1"></td>
               <td><?php echo $data->productDetails; ?></td>
               <td>₱<?php echo $data->productPrice; ?></td>
               <td><?php echo $data->productStocks; ?></td>
+              <td>
+                <?php echo $data->noOfStocks; ?>
+                <?php if($data->noOfStocks < 25) { ?>
+                  <p>Low no. of stocks ⚠</p>
+                <?php } ?>
+              </td>
               <td class="action-buttons">
                   <button popovertarget="view<?php echo $data->productID ?>">View</button>
                   <button popovertarget="editItem-<?php echo $data->productID ?>">Edit</button>
@@ -110,5 +137,6 @@ $stmt->execute();
         <?php } ?>
       </tbody>
   </table>
+  <br><br><br>
 </section>
     

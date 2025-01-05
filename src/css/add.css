@@ -45,6 +45,11 @@ td {
   color: #6c757d;
 }
 
+p {
+  margin-top: 2px;
+  color: #4caf50;
+}
+
 img {
   text-align: center;
   width: 100px;

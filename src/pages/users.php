@@ -7,6 +7,12 @@ if(empty($_SESSION['admin'])){
   header("Location: ../../index.php");
 }
 
+if($_SESSION['admin'] == 'customer support' || $_SESSION['admin'] == 'manager'){
+  echo "<script>alert('You dont have permission to access this page!');
+    window.location.href = './dashboard.php';
+  </script>";
+}
+
 $appUsers = $pdo->query("SELECT * FROM users_tbl");
 $users = $appUsers->fetchAll();
 
