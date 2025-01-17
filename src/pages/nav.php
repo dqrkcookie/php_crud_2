@@ -4,7 +4,7 @@ session_start();
 require_once('../../config/conn.php');
 
   if(empty($_SESSION['admin'])){
-    header("Location: ../../index.php");
+    header("Location: ./login.php");
   }
 
   $query = $pdo->query("SELECT * FROM pending_orders");

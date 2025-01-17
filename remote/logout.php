@@ -7,11 +7,11 @@ try{
 
     if(isset($_GET['admin'])){
       unset($_SESSION['admin']);
-      header("Location: ../index.php");
+      header("Location: ../src/pages/login.php");
       die();
     } else {
       unset($_SESSION['username']);
-      header("Location: ../index.php");
+      header("Location: ../src/pages/login.php");
       die();
     }
     

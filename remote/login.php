@@ -27,7 +27,7 @@ if(isset($_POST['submit'])){
     } else if($data && password_verify($password,                   $data->password) && $data->status == 'Blocked') {
       echo "<script> window.location.href = '../src/pages/blockuser.php'; </script>";
     } else {
-      header("Location: ../index.php?credentials=invalid");
+      header("Location: ../src/pages/login.php?credentials=invalid");
     }
   }catch(PDOException $e){
     die("Login error: " . $e->getMessage());

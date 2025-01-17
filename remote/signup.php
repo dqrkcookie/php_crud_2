@@ -42,7 +42,7 @@ if(isset($_POST['submit'])){
     if(!$stmt->execute($params)){ 
       die('Unable to create an account');
     } else {
-      header("Location: ../index.php");
+      header("Location: ../src/pages/login.php");
       die();
     }
   }catch(PDOException $e){

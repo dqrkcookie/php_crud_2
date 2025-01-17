@@ -4,7 +4,7 @@ require_once('../../config/conn.php');
 require('./nav.php');
 
 if(empty($_SESSION['admin'])){
-  header("Location: ../../index.php");
+  header("Location: ./login.php");
 }
 
 if($_SESSION['admin'] == 'customer support' || $_SESSION['admin'] == 'manager'){

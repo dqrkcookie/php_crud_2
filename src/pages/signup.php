@@ -15,7 +15,7 @@ require_once("../../config/conn.php");
 </head>
 
 <body>
-    <a href="../../index.php" title="Go back to Log in.">Back</a>
+    <a href="./login.php" title="Go back to Log in.">Back</a>
     <div>
         <form action="../../remote/signup.php" method="POST" enctype="multipart/form-data">
             <h1>Sign Up</h1>

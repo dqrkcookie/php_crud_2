@@ -4,7 +4,7 @@ session_start();
 require_once('../../config/conn.php');
 
 if(empty($_SESSION['username'])){
-  header("Location: ../../index.php");
+  header("Location: ./login.php");
   die();
 }
 
@@ -46,7 +46,7 @@ $id = uniqid();
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rakk</title>
+  <title>Arsen</title>
   <link rel="stylesheet" href="../css/main.css">
   <script src="https://kit.fontawesome.com/b70669fb91.js" crossorigin="anonymous"></script>
 </head>
@@ -54,7 +54,7 @@ $id = uniqid();
 
 <nav>
   <ul>
-    <li><a href="./main.php"><span>Rakk</span></a></li>
+    <li><a href="./main.php"><span>Arsen</span></a></li>
     <li>
       <form action="./search.php" method="GET">
         <input type="text" name="search" placeholder="Search item">
@@ -269,7 +269,7 @@ $id = uniqid();
     </form>
 
     <div id="welcome">
-      <h1>Welcome to Rakk!</h1>
+      <h1>Welcome to Arsen!</h1>
     </div>
 
     <?php
